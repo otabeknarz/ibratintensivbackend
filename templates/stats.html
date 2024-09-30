@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Stats of users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* For handling long names */
+        .truncate {
+            max-width: 250px; /* Adjust the width as necessary */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 600px) {
+            table, th, td {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>Telegram botdan kelgan barcha odamlar statistikasi</h1>
+<p>Barcha odamlar soni: {{ total_users }}</p>
+<p>Umuman odam taklif qilmagan userlar bu yerda ko'rsatilmaydi, faqat 1 ta yoki undan ko'p bo'lishi lozim</p>
+    <table>
+        <thead>
+            <tr>
+                <th class="center">#</th>
+                <th>Ism Familiya</th>
+                <th class="center">Taklif qilingan do'stlar soni</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td class="center">{{ forloop.counter }}</td>
+                <td class="truncate" title="{{ user.name }}">{{ user.name }}</td>
+                <td class="center">{{ user.invite_count }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="center">No users have invited anyone.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
