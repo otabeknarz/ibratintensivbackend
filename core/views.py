@@ -20,7 +20,7 @@ def add_people(request):
     phone_number = request.data["phone_number"]
     People.objects.create(name=name, phone_number="+998" + phone_number)
     return Response(
-        {"status": "ok", "link": "https://t.me/+dAUHD6dKTrxmMGEy"},
+        {"status": "ok", "link": "https://t.me/+-_RM8SFzgm9kZjBi"},
         status=status.HTTP_201_CREATED,
     )
 
