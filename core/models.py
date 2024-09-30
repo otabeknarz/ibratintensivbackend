@@ -19,6 +19,13 @@ class TGPeople(models.Model):
     invited_friends = models.ManyToManyField(
         "self", null=True, blank=True, symmetrical=False, related_name="parents"
     )
+    is_10 = models.BooleanField(default=False)
+    is_20 = models.BooleanField(default=False)
+    is_30 = models.BooleanField(default=False)
+    is_50 = models.BooleanField(default=False)
+    is_100 = models.BooleanField(default=False)
+    is_150 = models.BooleanField(default=False)
+    is_200 = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.name
