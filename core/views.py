@@ -74,3 +74,25 @@ def get_tg_people(request, id: str):
 def get_people_ids(request):
     people_ids = TGPeopleIDSerializer(TGPeople.objects.all(), many=True)
     return Response({"status": "true", "people": people_ids.data})
+
+
+@api_view(["GET"])
+def has_invited_people_ids(request):
+    greater_than = request.query_params.get('greater_than', 10)
+    people_ids = TGPeople.objects.annotate(invite_count=Count('invited_friends')).filter(
+        invite_count__gte=greater_than, is_10=False).values_list('id', 'name')
+    return Response({"status": "true", "people": list(people_ids)})
+
+
+@api_view(["POST"])
+def set_true_10(request):
+    id = request.data["id"]
+    try:
+        people = TGPeople.objects.get(id=id)
+        people.is_10 = True
+        people.save()
+    except Exception as e:
+        return Response(
+            {"status": "false", "detail": str(e)}, status=status.HTTP_400_BAD_REQUEST
+        )
+    return Response({"status": "true", "detail": f"{id} is_10 is true"}, status=status.HTTP_200_OK)
