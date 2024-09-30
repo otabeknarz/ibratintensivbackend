@@ -1,0 +1,6 @@
+core/migrations
+.idea
+*.pyc
+core/__pycache__
+conifg/__pycache__
+db.sqlite3

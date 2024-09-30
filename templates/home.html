@@ -1,0 +1,47 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="image relative">
+            <img class="w-full h-auto" src="{% static 'images/iskandar-komoldinov.jpg' %}" alt="iskandar-komoldinov">
+            <div class="info absolute inset-0 flex items-center justify-center text-center bg-black bg-opacity-50">
+                <div>
+                    <h1 class="text-white text-2xl font-bold">Ingliz tilingizda Grammatika va Speakingni yangi darajaga olib chiqishga tayyormisiz?</h1>
+                    <p class="text-white mt-2">Iskandar Kamoliddinovdan 2 KUNLIK INTENSIV uchun joyingizni band qilishga ulguring!</p>
+                </div>
+            </div>
+        </div>
+        <form>
+            {% csrf_token %}
+            <div>
+                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Ismingizni kiriting</label>
+                <div class="relative mt-2 rounded-md shadow-sm">
+                  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <span class="text-gray-500 sm:text-sm">Ism:</span>
+                  </div>
+                  <input type="text" name="name" id="name" class="block w-full rounded-md border-0 py-3 pl-12 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Ismingizni kiriting">
+                </div>
+              </div>
+              <div>
+                <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900">Telefon raqam</label>
+                <div class="relative mt-2 rounded-md shadow-sm">
+                  <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <span class="text-gray-500 sm:text-sm">+998</span>
+                  </div>
+                  <input type="text" name="phone_number" id="phone_number" class="block w-full rounded-md border-0 py-3 pl-14 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="99 999 99 99">
+                </div>
+              </div>
+        </form>   
+    </div>
+</section>
+
+<script>
+    function checkPhoneNumber () {
+        
+    }
+</script>
+
+{% endblock %}
