@@ -1,8 +1,17 @@
+from django.db.models import Count
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import People, TGPeople
 from .serializers import TGPeopleSerializerM2M, TGPeopleIDSerializer
+
+
+def stats(request):
+    users_with_invites = TGPeople.objects.annotate(invite_count=Count('invited_friends')).filter(
+        invite_count__gt=0).order_by('-invite_count')
+    total_users = TGPeople.objects.count()
+    return render(request, 'stats.html', {'users': users_with_invites, 'total_users': total_users})
 
 
 @api_view(["POST"])
